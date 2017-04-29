@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vue Event Listeners</title>
+  <title>Attribute and Class Binding</title>
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <style>
+    .color-tiffany { color: #81D8D0 }
+  </style>
 </head>
 <body>
   <div id="app">
     <img src="https://vuejs.org/images/logo.png" alt="Vue logo">
     <ul>
-      <li v-for="name in names" v-text="name"></li>
+      <li v-bind:class="{ 'color-tiffany': isToggle }" v-for="name in names" v-text="name"></li>
     </ul>
-    <input id="input" type="text" v-model="newName">
-    <button v-on:click="addName">Add Name</button>
+    <button v-on:click="alterStyle" v-bind:title="title">Toggle</button>
   </div>
 
   <script>
@@ -19,12 +21,12 @@
       el: '#app',
       data: {
         names: ['Billy', 'Zelda', 'Link', 'MoMo'],
-        newName: ''
+        title: 'Hover over me',
+        isToggle: false
       },
       methods: {
-        addName() {
-          this.names.push(this.newName)
-          this.newName = ''
+        alterStyle() {
+          this.isToggle = !this.isToggle
         }
       }
     })
