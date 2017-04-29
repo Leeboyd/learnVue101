@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Need for Computed Properties</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <img src="https://vuejs.org/images/logo.png" alt="Vue logo">
+    <h1>Incompleted</h1>
+    <ul>
+      <li v-for="task in tasks" v-if="!task.completed">
+        <input type="checkbox" v-model="task.completed">{{ task.description }}
+      </li>
+    </ul>
+    <h1>Completed</h1>
+    <ul>
+      <li v-for="task in taskCompleted" v-text="task.description"></li>
+    </ul>
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        tasks: [
+          { description: 'Arrows of Burning Heat', completed: true },
+          { description: 'Cooking with Koko ', completed: false },
+          { description: 'Koko Cuisine', completed: true },
+          { description: 'Playtime with Cottla', completed: false },
+          { description: 'Kokos Kitchen', completed: true },
+          { description: 'Kokos Specialty', completed: false },
+        ],
+      },
+      methods: {
+        alterStyle() {
+          this.isToggle = !this.isToggle
+        }
+      },
+      computed: {
+        taskCompleted() {
+          return this.tasks.filter((task) => task.completed)
+        }
+      }
+
+    })
+  </script>
+</body>
+</html>
