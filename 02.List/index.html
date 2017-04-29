@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Data Binding</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <img src="https://vuejs.org/images/logo.png" alt="Vue logo">
+    <ul>
+      <li v-for="name in names" v-text="name"></li>
+    </ul>
+    <input id="input">
+    <button id="button">Add Name</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        names: ['Billy', 'Zelda', 'Link', 'MoMo']
+      },
+
+      mounted() {
+        document.querySelector('#button').addEventListener('click', () => {
+          let name = document.querySelector('#input')
+          this.names.push(name.value)
+          name.value = ''
+        })
+      }
+    })
+  </script>
+</body>
+</html>
